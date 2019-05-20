@@ -82,7 +82,7 @@ public class MainPage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("productMaintain")) {
-			new ProductMaintainPage();
+			new GoodMaintainPage();
 			this.dispose();
 		}
 		

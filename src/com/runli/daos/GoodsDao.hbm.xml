@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="com.runli.daos">
+	<class name="GoodsDao" table="goods">
+		<id name="gid" column="gid" type="java.lang.Integer">
+			<generator class="increment"></generator>
+		</id>
+		<property name="gname" column="gname" type="java.lang.String" unique="true"></property>
+		<property name="gprice" column="gprice" type="java.lang.Double"></property>
+		<property name="gnum" column="gnum" type="java.lang.Integer"></property>
+	</class>
+	
+</hibernate-mapping>
