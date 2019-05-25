@@ -50,4 +50,17 @@ public class GoodOperations {
 		return new DefaultTableModel(data, new String[] {"ID", "商品名称", "商品价格", "商品数量"});
 	}
 	
+	public static TableModel select(String keyword) {
+		Session session = HibernateUtil.openSession();
+		String hql = "select gid, gname, gprice, gnum from com.runli.daos.GoodsDao where gname like '%" + keyword + "%'";
+		Query query = session.createQuery(hql);
+		List result = query.getResultList();
+		Object[][] data = new Object[result.size()][];
+		for(int i = 0; i < result.size(); i++) {
+			data[i] = (Object[])(result.get(i));
+		}
+		session.close();
+		return new DefaultTableModel(data, new String[] {"ID", "商品名称", "商品价格", "商品数量"});
+	}
+	
 }

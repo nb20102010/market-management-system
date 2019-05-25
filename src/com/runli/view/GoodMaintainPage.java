@@ -84,6 +84,8 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 		//center
 		jtf1 = new JTextField(15);		
 		jb5 = new JButton("≤È—Ø");
+		jb5.setActionCommand("query");
+		jb5.addActionListener(this);
 		
 		jp5 = new JPanel();
 		jp5.add(jtf1);
@@ -127,6 +129,12 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("allGoods")){
 			tm = GoodOperations.selectAll();
 			jt1.setModel(tm);			
+		}
+		
+		if(e.getActionCommand().equals("query")) {
+			String keyword = jtf1.getText();
+			tm = GoodOperations.select(keyword);
+			jt1.setModel(tm);
 		}
 		
 		if(e.getActionCommand().equals("return")) {
