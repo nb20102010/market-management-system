@@ -47,6 +47,8 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 		jb1.addActionListener(this);
 		
 		jb2 = new JButton("更改");
+		jb2.setActionCommand("modifyGood");
+		jb2.addActionListener(this);
 		
 		jb3 = new JButton("删除");
 		jb3.setActionCommand("delGood");
@@ -102,9 +104,6 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 		
 		this.add(centerJPanel);
 		
-		
-
-		
 		this.setTitle("商品维护");
 		this.setSize(400, 350);
 		this.setVisible(true);
@@ -121,10 +120,23 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 		
 		if(e.getActionCommand().equals("delGood")) {
 			int row = this.jt1.getSelectedRow();
-			Integer gid = (Integer) tm.getValueAt(row, 0);
-			tm = GoodOperations.delGood(gid);
-			jt1.setModel(tm);
-		}		
+			if(row < 0) {
+				new NoSelectionWarningPage(this, "警告", true);
+			} else {
+				Integer gid = (Integer) tm.getValueAt(row, 0);
+				tm = GoodOperations.delGood(gid, jtf1.getText());
+				jt1.setModel(tm);
+			}
+		}
+		
+		if(e.getActionCommand().equals("modifyGood")) {
+			int row = this.jt1.getSelectedRow();
+			if(row < 0) {
+				new NoSelectionWarningPage(this, "警告", true);
+			} else {
+				new ModifyGoodPage(this, "修改信息", true, row);
+			}
+		}
 		
 		if(e.getActionCommand().equals("allGoods")){
 			tm = GoodOperations.selectAll();
