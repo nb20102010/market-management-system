@@ -26,7 +26,9 @@ public class MainPage extends JFrame implements ActionListener {
 		jb1.addActionListener(this);
 		
 		jb2 = new JButton("前台收银");
-		jb3 = new JButton("商品管理");
+		jb3 = new JButton("柜员管理");
+		jb3.setActionCommand("salesmanManage");
+		jb3.addActionListener(this);
 		
 		jb4 = new JButton("退出");
 		jb4.setActionCommand("exit");
@@ -83,6 +85,11 @@ public class MainPage extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("productMaintain")) {
 			new GoodMaintainPage();
+			this.dispose();
+		}
+		
+		if(e.getActionCommand().equals("salesmanManage")) {
+			new SalesmanManagePage();
 			this.dispose();
 		}
 		

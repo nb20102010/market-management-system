@@ -13,5 +13,6 @@
 		<property name="show_sql">true</property>
 		
 		<mapping resource="com/runli/daos/GoodsDao.hbm.xml"/>
+		<mapping resource="com/runli/daos/SalesmanDao.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

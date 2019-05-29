@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.runli.controllers.GoodOperations;
+import com.runli.controllers.GoodOps;
 
 public class AddGoodPage extends JDialog implements ActionListener{
 	
@@ -87,7 +87,7 @@ public class AddGoodPage extends JDialog implements ActionListener{
 			Integer gnum = Integer.parseInt(this.jtf3.getText());
 			
 			GoodMaintainPage owner = (GoodMaintainPage)this.getOwner();
-			owner.tm = GoodOperations.addGood(gname, gprice, gnum, owner.jtf1.getText());
+			owner.tm = GoodOps.addGood(gname, gprice, gnum, owner.jtf1.getText());
 			owner.jt1.setModel(owner.tm);
 			this.dispose();
 		}

@@ -16,9 +16,10 @@ import javax.swing.JTextField;
 import javax.swing.table.TableModel;
 
 import com.runli.controllers.GoodOps;
+import com.runli.controllers.SalesmanOps;
 
-public class GoodMaintainPage extends JFrame implements ActionListener{
-	
+public class SalesmanManagePage extends JFrame implements ActionListener{
+
 	JPanel northJPanel, centerJPanel, eastJPanel, jp1, jp2, jp3, jp4, jp5, jp6;
 	JButton jb1, jb2, jb3, jb4, jb5, jb6;
 	JLabel jl1, jl2;
@@ -28,11 +29,11 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 	
 	TableModel tm;
 	
-	public GoodMaintainPage() {
+	public SalesmanManagePage() {
 		// TODO Auto-generated constructor stub
 		
 		//north
-		jl1 = new JLabel(new ImageIcon("image/ProductMaintain.png"));
+		jl1 = new JLabel(new ImageIcon("image/SalesmanManage.png"));
 		northJPanel = new JPanel();
 		northJPanel.add(jl1);
 		this.add(northJPanel, BorderLayout.NORTH);
@@ -43,19 +44,19 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 		
 		//east		
 		jb1 = new JButton("添加");
-		jb1.setActionCommand("addGood");
+		jb1.setActionCommand("addSalesman");
 		jb1.addActionListener(this);
 		
 		jb2 = new JButton("更改");
-		jb2.setActionCommand("modifyGood");
+		jb2.setActionCommand("modifySalesman");
 		jb2.addActionListener(this);
 		
 		jb3 = new JButton("删除");
-		jb3.setActionCommand("delGood");
+		jb3.setActionCommand("delSalesman");
 		jb3.addActionListener(this);
 		
-		jb4 = new JButton("所有商品");
-		jb4.setActionCommand("allGoods");
+		jb4 = new JButton("所有柜员");
+		jb4.setActionCommand("allSalesman");
 		jb4.addActionListener(this);
 		
 		jb6 = new JButton("返回首页");
@@ -93,7 +94,7 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 		jp5.add(jtf1);
 		jp5.add(jb5);
 		
-		tm = GoodOps.selectAll();
+		tm = SalesmanOps.selectAll();
 		jt1 = new JTable(tm);
 		jsp1 = new JScrollPane(jt1);
 		
@@ -104,7 +105,7 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 		
 		this.add(centerJPanel);
 		
-		this.setTitle("商品维护");
+		this.setTitle("柜员管理");
 		this.setSize(400, 350);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,38 +115,38 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getActionCommand().equals("addGood")) {
+		if(e.getActionCommand().equals("addSalesman")) {
 			new AddGoodPage(this, "添加商品", true);
 		}
 		
-		if(e.getActionCommand().equals("delGood")) {
+		if(e.getActionCommand().equals("delSalesman")) {
 			int row = this.jt1.getSelectedRow();
 			if(row < 0) {
-				new NoSelectedGoodWarningPage(this, "警告", true);
+				new NoSelectedSalesmanWarningPage(this, "警告", true);
 			} else {
 				Integer gid = (Integer) tm.getValueAt(row, 0);
-				tm = GoodOps.delGood(gid, jtf1.getText());
+				tm = SalesmanOps.delSalesman(gid, jtf1.getText());
 				jt1.setModel(tm);
 			}
 		}
 		
-		if(e.getActionCommand().equals("modifyGood")) {
+		if(e.getActionCommand().equals("modifySalesman")) {
 			int row = this.jt1.getSelectedRow();
 			if(row < 0) {
-				new NoSelectedGoodWarningPage(this, "警告", true);
+				new NoSelectedSalesmanWarningPage(this, "警告", true);
 			} else {
 				new ModifyGoodPage(this, "修改信息", true, row);
 			}
 		}
 		
-		if(e.getActionCommand().equals("allGoods")){
-			tm = GoodOps.selectAll();
+		if(e.getActionCommand().equals("allSalesman")){
+			tm = SalesmanOps.selectAll();
 			jt1.setModel(tm);			
 		}
 		
 		if(e.getActionCommand().equals("query")) {
 			String keyword = jtf1.getText();
-			tm = GoodOps.select(keyword);
+			tm = SalesmanOps.select(keyword);
 			jt1.setModel(tm);
 		}
 		
@@ -154,5 +155,5 @@ public class GoodMaintainPage extends JFrame implements ActionListener{
 			this.dispose();
 		}
 	}
-
+	
 }

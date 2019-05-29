@@ -10,13 +10,13 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class NoSelectionWarningPage extends JDialog implements ActionListener{
+public class NoSelectedGoodWarningPage extends JDialog implements ActionListener{
 	
 	JPanel jp1, jp2;
 	JLabel jl1;
 	JButton jb1;
 	
-	public NoSelectionWarningPage(Frame owner, String title, boolean modal) {
+	public NoSelectedGoodWarningPage(Frame owner, String title, boolean modal) {
 		// TODO Auto-generated constructor stub
 		
 		super(owner, title, modal);

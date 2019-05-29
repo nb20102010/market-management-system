@@ -12,7 +12,7 @@ import org.hibernate.query.Query;
 import com.runli.daos.GoodsDao;
 import com.runli.util.HibernateUtil;
 
-public class GoodOperations {
+public class GoodOps {
 	
 	public static TableModel addGood(String gname, Double gprice, Integer gnum, String keyword) {
 		Session session = HibernateUtil.openSession();
