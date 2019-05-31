@@ -116,7 +116,7 @@ public class SalesmanManagePage extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("addSalesman")) {
-			new AddGoodPage(this, "添加商品", true);
+			new AddSalesmanPage(this, "添加柜员", true);
 		}
 		
 		if(e.getActionCommand().equals("delSalesman")) {
@@ -135,7 +135,7 @@ public class SalesmanManagePage extends JFrame implements ActionListener{
 			if(row < 0) {
 				new NoSelectedSalesmanWarningPage(this, "警告", true);
 			} else {
-				new ModifyGoodPage(this, "修改信息", true, row);
+				new ModifySalesmanPage(this, "修改信息", true, row);
 			}
 		}
 		

@@ -13,28 +13,28 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.runli.controllers.GoodOps;
+import com.runli.controllers.SalesmanOps;
 
-public class ModifyGoodPage extends JDialog implements ActionListener{
-	
+public class ModifySalesmanPage extends JDialog implements ActionListener{
+
 	JPanel northJPanel, centerJPanel, westJPanel, southJPanel;
-	JLabel jl1, jl2, jl3, jl4;
-	JTextField jtf1, jtf2, jtf3, jtf4;
+	JLabel jl1, jl2, jl3;
+	JTextField jtf1, jtf2, jtf3;
 	JButton jb1, jb2;
 	
-	public ModifyGoodPage(Frame owner, String title, boolean modal, int row) {
+	public ModifySalesmanPage(Frame owner, String title, boolean modal, int row) {
 		// TODO Auto-generated constructor stub
 		
 		super(owner, title, modal);
 		
 		//north
 		northJPanel = new JPanel();
-		northJPanel.add(new JLabel(new ImageIcon("image/ModifyGood.png")));
+		northJPanel.add(new JLabel(new ImageIcon("image/ModifySalesman.png")));
 		this.add(northJPanel, BorderLayout.NORTH);
 		
 		//south
 		jb1 = new JButton("确认");
-		jb1.setActionCommand("modifyGood");
+		jb1.setActionCommand("modifySalesman");
 		jb1.addActionListener(this);
 		
 		jb2 = new JButton("取消");
@@ -47,38 +47,34 @@ public class ModifyGoodPage extends JDialog implements ActionListener{
 		this.add(southJPanel, BorderLayout.SOUTH);
 		
 		//west
-		jl1 = new JLabel("商品编号: ");
-		jl2 = new JLabel("商品名称: ");
-		jl3 = new JLabel("商品价格: ");
-		jl4 = new JLabel("商品数量: ");
+		jl1 = new JLabel("柜员编号: ");
+		jl2 = new JLabel("柜员姓名: ");
+		jl3 = new JLabel("登录密码: ");
 		
 		westJPanel = new JPanel();
-		westJPanel.setLayout(new GridLayout(4, 1));
+		westJPanel.setLayout(new GridLayout(3, 1));
 		westJPanel.add(jl1);
 		westJPanel.add(jl2);
 		westJPanel.add(jl3);
-		westJPanel.add(jl4);
 		this.add(westJPanel, BorderLayout.WEST);
 		
 		//center
 		
-		GoodMaintainPage o = (GoodMaintainPage)owner;
+		SalesmanManagePage o = (SalesmanManagePage)owner;
 		
 		jtf1 = new JTextField((String.valueOf(o.tm.getValueAt(row, 0))));
 		jtf1.setEditable(false);
 		jtf2 = new JTextField((String) o.tm.getValueAt(row, 1));
 		jtf3 = new JTextField((String.valueOf(o.tm.getValueAt(row, 2))));
-		jtf4 = new JTextField((String.valueOf(o.tm.getValueAt(row, 3))));
 		
 		centerJPanel = new JPanel();
 		centerJPanel.setLayout(new GridLayout(4, 1));
 		centerJPanel.add(jtf1);
 		centerJPanel.add(jtf2);
 		centerJPanel.add(jtf3);
-		centerJPanel.add(jtf4);
 		this.add(centerJPanel);
 		
-		this.setSize(200, 240);
+		this.setSize(200, 220);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
@@ -88,14 +84,13 @@ public class ModifyGoodPage extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getActionCommand().equals("modifyGood")) {
-			Integer gid = Integer.parseInt(this.jtf1.getText());
-			String gname = this.jtf2.getText();
-			Double gprice = Double.parseDouble(this.jtf3.getText());
-			Integer gnum = Integer.parseInt(this.jtf4.getText());
+		if(e.getActionCommand().equals("modifySalesman")) {
+			Integer sid = Integer.parseInt(this.jtf1.getText());
+			String sname = this.jtf2.getText();
+			String spassword = this.jtf3.getText();
 			
-			GoodMaintainPage owner = (GoodMaintainPage)this.getOwner();
-			owner.tm = GoodOps.modifyGood(gid, gname, gprice, gnum, owner.jtf1.getText());
+			SalesmanManagePage owner = (SalesmanManagePage)this.getOwner();
+			owner.tm = SalesmanOps.modifySalesman(sid, sname, spassword, owner.jtf1.getText());
 			owner.jt1.setModel(owner.tm);
 			this.dispose();
 		}
@@ -104,4 +99,5 @@ public class ModifyGoodPage extends JDialog implements ActionListener{
 			this.dispose();
 		}
 	}
+	
 }
